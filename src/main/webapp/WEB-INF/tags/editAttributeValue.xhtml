@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://goodiemania.org/seshat/taglib"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<!--@elvariable id="editedValue" type="org.goodiemania.seshat.frontend.models.Attribute"-->
+
+<h:body>
+    <ui:composition>
+        <ui:fragment rendered="#{editedValue.attribute.type eq 'STRING'}">
+            <s:inputField id="metadata" value="#{editedValue.value}" label="#{editedValue.attribute.name}"/>
+        </ui:fragment>
+        <ui:fragment rendered="#{editedValue.attribute.type eq 'LIST'}">
+            <ui:repeat value="#{editedValue.value}" var="_iVar">
+                <s:inputField id="multiMetadata" value="#{_iVar}" label="#{editedValue.attribute.name}" readOnly="true">
+                    <div class="input-group-append">
+                        <h:commandButton action="#{editedValue.removeListValue(_iVar)}"
+                                         value="Remove"
+                                         styleClass="btn btn-outline-secondary">
+                            <f:ajax execute="@form" render="@form"/>
+                        </h:commandButton>
+                    </div>
+                </s:inputField>
+            </ui:repeat>
+            <s:inputField id="newMultiMetadata" value="#{editedValue.newListValue}" label="#{editedValue.attribute.name}">
+                <div class="input-group-append">
+                    <h:commandButton action="#{editedValue.addNewListValue()}"
+                                     value="Add"
+                                     styleClass="btn btn-outline-secondary">
+                        <f:ajax execute="@form" render="@form"/>
+                    </h:commandButton>
+                </div>
+            </s:inputField>
+        </ui:fragment>
+    </ui:composition>
+</h:body>
+</html>

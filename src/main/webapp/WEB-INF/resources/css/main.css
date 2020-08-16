@@ -1,0 +1,46 @@
+.alert {
+    display: block;
+    margin: 1em 0;
+}
+
+body {
+    padding-top: 5rem;
+}
+
+main {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.collapseModule .collapse, .module .collapsing {
+    height: 3rem;  /* [NUM_OF_LINES] x [LINE_HEIGHT] */
+}
+
+.collapseModule .collapse {
+    position: relative;  /* For ...'s content absolute positioning */
+    display: block;
+    overflow: hidden;
+}
+
+.collapseModule .collapse:before {
+    content: ' ...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.collapseModule .collapse.show {
+    height: auto;  /* You need to reset the height when not collapsed */
+}
+
+.collapseModule .collapse.show:before {
+    display: none;  /* Of course you don't want to display ... */
+}
+
+.collapseModule a.collapsed:after {
+    content: '+ Show More';
+}
+
+.collapseModule a:not(.collapsed):after {
+    content: '- Show Less';
+}

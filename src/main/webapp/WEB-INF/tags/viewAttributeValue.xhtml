@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:s="http://goodiemania.org/seshat/taglib"
+>
+<!--@elvariable id="value" type="org.goodiemania.seshat.frontend.models.Attribute"-->
+
+<h:body>
+    <ui:composition>
+        <ui:fragment rendered="#{value.attribute.type eq 'STRING' and not empty value.value}">
+            <s:row>
+                <dt class="col-sm-3">#{value.attribute.name}</dt>
+                <dd class="col-sm-9">#{value.value}</dd>
+            </s:row>
+        </ui:fragment>
+        <ui:fragment rendered="#{value.attribute.type eq 'LIST' and not value.value.isEmpty()}">
+            <s:row>
+                <dt class="col-sm-3">#{value.attribute.name}</dt>
+                <dd class="col-sm-9"><ui:repeat value="#{value.value}" var="_iVar">
+                    #{_iVar};
+                </ui:repeat></dd>
+            </s:row>
+        </ui:fragment>
+    </ui:composition>
+</h:body>
+</html>

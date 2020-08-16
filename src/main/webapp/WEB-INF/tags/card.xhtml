@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<!--@elvariable id="title" type="java.lang.String"-->
+<!--@elvariable id="styleClass" type="java.lang.String"-->
+
+<h:body>
+    <ui:composition>
+        <div class="#{not empty styleClass ? styleClass : 'col-xl-6'}">
+            <div class="card shadow mb-4">
+                <ui:fragment rendered="#{not empty title}">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">#{title}</h6>
+                    </div>
+                </ui:fragment>
+                <div class="card-body">
+                    <ui:insert/>
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</h:body>
+</html>
